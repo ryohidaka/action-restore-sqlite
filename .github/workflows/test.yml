@@ -13,4 +13,31 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Create sample.db and add tables
+        run: |
+          cat << EOF > sample.sql
+          PRAGMA foreign_keys=OFF;
+          BEGIN TRANSACTION;
+          CREATE TABLE users (
+              id INTEGER PRIMARY KEY AUTOINCREMENT,
+              name TEXT NOT NULL,
+              email TEXT NOT NULL
+            );
+          INSERT INTO users VALUES(1,'John Doe','john@example.com');
+          INSERT INTO users VALUES(2,'Jane Smith','jane@example.com');
+          CREATE TABLE orders (
+              id INTEGER PRIMARY KEY AUTOINCREMENT,
+              user_id INTEGER,
+              product TEXT NOT NULL,
+              amount INTEGER NOT NULL,
+              FOREIGN KEY (user_id) REFERENCES users (id)
+            );
+          INSERT INTO orders VALUES(1,1,'Product A',3);
+          INSERT INTO orders VALUES(2,2,'Product B',2);
+          DELETE FROM sqlite_sequence;
+          INSERT INTO sqlite_sequence VALUES('users',2);
+          INSERT INTO sqlite_sequence VALUES('orders',2);
+          COMMIT;
+          EOF
+
       - uses: "./"
