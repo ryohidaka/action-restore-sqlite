@@ -44,3 +44,11 @@ jobs:
         with:
           db: "sample.db"
           dump-file: "sample.sql"
+
+      - name: List all tables in the database
+        run: |
+          sqlite3 sample.db "SELECT name FROM sqlite_master WHERE type='table';"
+
+      - name: Display contents of the users table
+        run: |
+          sqlite3 sample.db "SELECT * FROM users;"
