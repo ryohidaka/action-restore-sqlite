@@ -1,8 +1,8 @@
-name: "Rebuild SQLite"
+name: "Restore SQLite"
 
 author: "ryohidaka"
 
-description: "GitHub Actions to rebuild SQLite DB from dump file."
+description: "GitHub Actions to restore SQLite DB from dump file."
 
 branding:
   color: green
