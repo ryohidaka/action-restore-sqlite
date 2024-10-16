@@ -5,8 +5,8 @@ author: "ryohidaka"
 description: "GitHub Actions to restore SQLite DB from dump file."
 
 branding:
-  color: green
-  icon: send
+  color: blue
+  icon: database
 
 inputs:
   version:
