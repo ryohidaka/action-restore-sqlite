@@ -14,7 +14,7 @@ jobs:
   restore:
     runs-on: ubuntu-latest
     steps:
-      - uses: ryohidaka/action-restore-sqlite@v1
+      - uses: ryohidaka/action-restore-sqlite@v0.1.0
         with:
           version: "3.43.2"
           db: "sample.db"
