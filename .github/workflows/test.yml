@@ -41,3 +41,6 @@ jobs:
           EOF
 
       - uses: "./"
+        with:
+          db: "sample.db"
+          dump-file: "sample.sql"

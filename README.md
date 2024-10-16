@@ -10,9 +10,6 @@ GitHub Actions to rebuild SQLite DB from dump file.
 ```yml
 on: [push]
 
-permissions:
-  contents: write
-
 jobs:
   rebuild:
     runs-on: ubuntu-latest
@@ -20,10 +17,14 @@ jobs:
       - uses: ryohidaka/action-rebuild-sqlite@v1
         with:
           version: "3.43.2"
+          db: "sample.db"
+          dump-file: "sample.sql"
 ```
 
 ## Inputs
 
-| Input     | Description               | Required | Default    |
-| --------- | ------------------------- | -------- | ---------- |
-| `version` | SQLite version to install |          | `"latest"` |
+| Input       | Description                           | Required | Default    |
+| ----------- | ------------------------------------- | -------- | ---------- |
+| `version`   | SQLite version to install             |          | `"latest"` |
+| `db`        | The output SQLite database file name. | ✅       |            |
+| `dump-file` | The name of the dump file to use.     | ✅       |            |

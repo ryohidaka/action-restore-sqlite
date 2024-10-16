@@ -14,6 +14,14 @@ inputs:
     required: false
     default: "latest"
 
+  db:
+    description: "The output SQLite database file name."
+    required: true
+
+  dump-file:
+    description: "The name of the dump file to use."
+    required: true
+
 runs:
   using: "composite"
   steps:
@@ -25,3 +33,10 @@ runs:
       uses: ryohidaka/action-setup-sqlite@v1.2.0
       with:
         version: ${{ inputs.version }}
+
+    - name: Restore DB from dump file
+      run: |
+        $GITHUB_ACTION_PATH/scripts/restore.sh \
+          ${{ inputs.db }} \
+          ${{ inputs.dump-file }}
+      shell: bash
